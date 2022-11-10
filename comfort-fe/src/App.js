@@ -1,5 +1,8 @@
 import React, { Suspense } from 'react';
 
+import NavBar from './components/Navbar';
+import HomePage from "./views/HomePage";
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import "./font.module.css";
@@ -13,7 +16,8 @@ function App() {
         <ThemeProvider theme={customTheme}>
             <CssBaseline />
             <Suspense fallback={(<div>Loading...</div>)}>
-                
+                <NavBar />
+                <HomePage />
             </Suspense>
         </ThemeProvider>
     );
