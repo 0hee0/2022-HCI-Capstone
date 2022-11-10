@@ -68,6 +68,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.background.main,
         width: "100%",
         height: "100vh",
+        overflow: "hidden"
     }
 }))
 
