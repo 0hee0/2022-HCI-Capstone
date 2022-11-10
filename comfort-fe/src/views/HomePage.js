@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Grid } from '@mui/material';
 import { makeStyles, styled } from '@mui/styles';
 import NavBar from '../components/Navbar';
@@ -6,10 +6,26 @@ import Dashboard from '../components/Dashboard';
 import Calendar from '../components/Calendar';
 import Checklist from '../components/Checklist';
 import Diary from '../components/Diary';
+import diaryIcon from '../assets/romantic-novel.png';
 
 
 function HomePage() {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
+    const [draft, setDraft] = useState("");
+
+    const handleOpen = (event) => {
+        setOpen(!open);
+    }
+
+    const handleChange = (event) => {
+        setDraft(event.target.value);
+    }
+
+    const handleSubmit = (event) => {
+        // TODO: POST draft
+        setOpen(false);
+    }
 
     return (
         <Box className={classes.container}>    
@@ -28,10 +44,11 @@ function HomePage() {
                             </ShadowBox>
                         </Grid>
                         <Grid item xs={3.5}>
-                            <ShadowBox height="12rem">
-                                <Diary />
+                            <ShadowBox onClick={handleOpen} backgroundColor="primary.main" height="12rem" sx={{ display: "flex", justifyContent: "center", alignItems: "center", '&:hover': { cursor: "pointer" } }}>
+                                <img src={diaryIcon} height="160px" />
                             </ShadowBox>
                         </Grid>
+                        <Diary open={open} draft={draft} onClose={handleOpen} handleSubmit={handleSubmit} handleChange={handleChange} />
                     </Grid>
                 </Grid>
                 <Grid item xs={5}>
@@ -50,7 +67,7 @@ const useStyles = makeStyles(theme => ({
     container: {
         backgroundColor: theme.palette.background.main,
         width: "100%",
-        height: "calc(100vh)",
+        height: "100vh",
     }
 }))
 
