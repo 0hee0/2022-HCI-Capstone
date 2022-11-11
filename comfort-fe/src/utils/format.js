@@ -36,13 +36,19 @@ const getDayOfDate = (source) => {
     return day;
 }
 
-const getDays = (source) => {
+const getDays = (source, todayPosition="center") => {
     const today = source;
     const currentDay = getDayOfDate(source);
 
     const sevenDays = [];
-    const idx = [-3, -2, -1, 0, 1, 2, 3];
     const days = ["일", "월", "화", "수", "목", "금", "토"];
+    let idx = [-3, -2, -1, 0, 1, 2, 3];
+    if (todayPosition === "end") {
+        idx = [-6, -5, -4, -3, -2, -1, 0];
+    }
+    else if (todayPosition === "first") {
+        idx = [0, 1, 2, 3, 4, 5, 6];
+    }
 
     let step;
     let day;
