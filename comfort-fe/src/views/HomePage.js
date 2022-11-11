@@ -16,6 +16,7 @@ function HomePage() {
 
     const handleOpen = (event) => {
         setOpen(!open);
+        setDraft("");
     }
 
     const handleChange = (event) => {
@@ -24,7 +25,7 @@ function HomePage() {
 
     const handleSubmit = (event) => {
         // TODO: POST draft
-        setOpen(false);
+        handleOpen();
     }
 
     return (
