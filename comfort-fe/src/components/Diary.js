@@ -2,25 +2,11 @@ import React from 'react';
 import { Typography, IconButton, TextField, Stack,
     Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { dateToString } from '../utils/format';
 
 
 function Diary({ open, onClose, handleSubmit, handleChange, draft }) {
     const today = new Date();
-
-    const dateToString = (source) => {
-        try {
-            const year = source.getFullYear();
-            const month = source.getMonth() + 1;
-            const day = source.getDate();
-    
-            const date = year + "년 " + month + "월 " + day + "일"
-
-            return date;
-        }
-        catch {
-            return source.slice(0, 10);
-        }
-    }
 
     return (
         <Dialog open={open} PaperProps={{ style: { borderRadius: "1rem" }}}>
