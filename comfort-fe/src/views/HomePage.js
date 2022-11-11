@@ -3,7 +3,7 @@ import { Box, Grid } from '@mui/material';
 import { makeStyles, styled } from '@mui/styles';
 import NavBar from '../components/Navbar';
 import Dashboard from '../components/Dashboard';
-import Calendar from '../components/Calendar';
+import MonthlyCalendar from '../components/MonthlyCalendar';
 import Checklist from '../components/Checklist';
 import Diary from '../components/Diary';
 import diaryIcon from '../assets/romantic-novel.png';
@@ -26,6 +26,12 @@ function HomePage() {
     const handleSubmit = (event) => {
         // TODO: POST draft
         handleOpen();
+    }
+
+    const getSavedDraft = (date) => (event) => {
+        setOpen(true);
+        // TODO: GET draft by date
+        setDraft("작성했던 일기입니다!");
     }
 
     return (
@@ -54,7 +60,7 @@ function HomePage() {
                 </Grid>
                 <Grid item xs={5}>
                     <ShadowBox height="38.5rem">
-                        <Calendar />
+                        <MonthlyCalendar getSavedDraft={getSavedDraft} />
                     </ShadowBox>
                 </Grid>
             </Grid>
