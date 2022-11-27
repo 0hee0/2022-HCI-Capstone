@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { dateToString, getDays } from '../utils/format';
 import { Box, Typography, Stack, Button, Tooltip } from '@mui/material';
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 
-function Checklist() {
+function Checklist({ flags, handleClick }) {
     const today = new Date();
     const days = getDays(today);
-    const [flags, setFlags] = useState([true, false, true, false, false, false, false]);  // mockup data
 
     useEffect(() => {
         // TODO: API - GET flags
@@ -21,13 +19,6 @@ function Checklist() {
     // const handleClick = (date) => (event) => {
     //     // TODO: API - POST day.date
     // }
-
-    /* TEST */
-    const handleClick = (index) => (event) => {
-        let newFlags = [...flags];
-        newFlags[index] = !flags[index];
-        setFlags(newFlags);
-    }
 
     return (
         <Stack py={3} spacing={1} justifyContent="center" alignItems="center">

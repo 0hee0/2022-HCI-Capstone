@@ -7,31 +7,65 @@ import MonthlyCalendar from '../components/MonthlyCalendar';
 import Checklist from '../components/Checklist';
 import Diary from '../components/Diary';
 import diaryIcon from '../assets/romantic-novel.png';
+import moment from 'moment';
+import 'moment/locale/ko';
 
 
 function HomePage() {
     const classes = useStyles();
+    const today = new Date();
+    /* Diary */
     const [open, setOpen] = useState(false);
     const [draft, setDraft] = useState("");
+    const [todayDiary, setTodayDiary] = useState("");   // TEST
+    /* Monthly Calendar */
+    // GET diary 
+    const [diary, setDiary] = useState(["2022-11-01", "2022-11-03", "2022-11-12", "2022-11-20", "2022-11-23", "2022-11-25"]);   // mockup data
+    // GET activity
+    const [activity, setActivity] = useState(["2022-11-12", "2022-11-14", "2022-11-25", "2022-11-26"]);              // mockup data
+    /* Checklist */
+    const [flags, setFlags] = useState([true, false, true, false, false, false, false]);  // mockup data
 
+    /* Diary */
     const handleOpen = (event) => {
         setOpen(!open);
         setDraft("");
     }
-
     const handleChange = (event) => {
         setDraft(event.target.value);
     }
-
     const handleSubmit = (event) => {
         // TODO: POST draft
+        if (draft) {
+            let newDiary = [...diary];
+            newDiary.push(moment(today).format("YYYY-MM-DD"));
+            setDiary(newDiary);
+            setTodayDiary(draft);
+        }
         handleOpen();
     }
 
+    /* Monthly Calendar */
     const getSavedDraft = (date) => (event) => {
         setOpen(true);
         // TODO: GET draft by date
-        setDraft("작성했던 일기입니다!");
+        if (todayDiary && date===moment(today).format("YYYY-MM-DD")) {   // TEST
+            setDraft(todayDiary);
+        }
+        else {
+            setDraft("작성했던 일기입니다!");
+        }
+    }
+
+    /* TEST - Checklist */
+    const handleClick = (index) => (event) => {
+        let newFlags = [...flags];
+        newFlags[index] = !flags[index];
+        setFlags(newFlags);
+
+        let newActivity = [...activity];
+        newActivity.push(moment(today).format("YYYY-MM-DD"));
+        setActivity(newActivity);
     }
 
     return (
@@ -47,7 +81,7 @@ function HomePage() {
                         </Grid>
                         <Grid item xs={8.5}>
                             <ShadowBox height="12rem">
-                                <Checklist />
+                                <Checklist flags={flags} handleClick={handleClick} />
                             </ShadowBox>
                         </Grid>
                         <Grid item xs={3.5}>
@@ -60,7 +94,7 @@ function HomePage() {
                 </Grid>
                 <Grid item xs={5}>
                     <ShadowBox height="38.5rem">
-                        <MonthlyCalendar getSavedDraft={getSavedDraft} />
+                        <MonthlyCalendar diary={diary} activity={activity} getSavedDraft={getSavedDraft} />
                     </ShadowBox>
                 </Grid>
             </Grid>

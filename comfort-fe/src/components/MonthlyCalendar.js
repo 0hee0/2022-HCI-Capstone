@@ -8,19 +8,12 @@ import moment from 'moment';
 import 'moment/locale/ko';
 
 
-function MonthlyCalendar(props) {
+function MonthlyCalendar({ diary, activity, getSavedDraft }) {
     const classes = useStyles();
     const [date, onChange] = useState(new Date());
-    const [diary, setDiary] = useState([]);
-    const [activity, setActivity] = useState([]);
 
     useEffect(() => {
         // TODO: API
-        /* TEST */
-        // GET diary 
-        setDiary(["2022-11-01", "2022-11-03", "2022-11-12"]);   // mockup data
-        // GET activity
-        setActivity(["2022-11-12", "2022-11-14"]);              // mockup data
     }, [])
 
     return (
@@ -57,7 +50,7 @@ function MonthlyCalendar(props) {
                 {diary.find((x) => x === moment(date).format("YYYY-MM-DD")) ? (
                     <Stack direction="row" alignItems="center" spacing={2}>
                         <Box className={`${classes.mediumDot} ${classes.diary}`} />
-                        <Typography onClick={props.getSavedDraft(dateToString(date, "-"))} sx={{ '&:hover': { cursor: "pointer" } }}>{dateToString(date)}에 작성한 일기</Typography>
+                        <Typography onClick={getSavedDraft(dateToString(date, "-"))} sx={{ '&:hover': { cursor: "pointer" } }}>{dateToString(date)}에 작성한 일기</Typography>
                     </Stack>
                 ) : null}
                 {activity.find((x) => x === moment(date).format("YYYY-MM-DD")) ? (

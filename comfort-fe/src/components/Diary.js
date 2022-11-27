@@ -7,7 +7,7 @@ import { dateToString } from '../utils/format';
 
 function Diary({ open, onClose, handleSubmit, handleChange, draft }) {
     const today = new Date();
-
+    
     return (
         <Dialog open={open} PaperProps={{ style: { borderRadius: "1rem" }}}>
             <div style={{ width: "36rem" }}>
