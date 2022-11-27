@@ -83,41 +83,32 @@ const useStyles = makeStyles(theme => ({
             fontSize: "1rem",
             fontWeight: 700,
         },
+        '& .react-calendar__tile': {
+            backgroundColor: "#FFF",
+            color: "#000",
+            borderRadius: "20%"
+        },
         '& .react-calendar__tile--now': {
             backgroundColor: "#DDDDDD",
             color: "#000",
             borderRadius: "20%"
         },
-        '& .react-calendar__tile:enabled:hover .react-calendar__tile:enabled:focus .react-calendar__tile--active .react-calendar__tile--active:enabled:hover .react-calendar__tile--active:enabled:focus .react-calendar__tile--hover': {
-            backgroundColor: "#FAFA",
-            color: "#000",
-        },
-        // TODO: custom css
-        // '& .react-calendar__tile--active': {
-        //     backgroundColor: "#FAFA",
-        //     color: "#000",
-        // },
-        // '.react-calendar__tile--active:enabled:hover': {
-        //     backgroundColor: "#FAFA",
-        //     color: "#000",
-        // },
-        // '.react-calendar__tile--active:enabled:focus': {
-        //     backgroundColor: "#FAFA",
-        //     color: "#000",
-        // },
-        // '.react-calendar__tile--hover': {
-        //     backgroundColor: "#FAFA",
-        //     color: "#000",
-        // },
-        // '.react-calendar__tile:enabled:hover': {
-        //     backgroundColor: "#FAFA",
-        //     color: "#000",
-        // },
-        // 'react-calendar__tile:enabled:focus': {
-        //     backgroundColor: "#FAFA",
-        //     color: "#000",
-        // },
         
+        '& .react-calendar__tile:enabled:hover': {
+            backgroundColor: "#F4F4F4",
+            color: "#000",
+            borderRadius: "20%"
+        },
+        '& .react-calendar__tile:enabled:focus': {
+            backgroundColor: "pink",
+            color: "#000",
+            borderRadius: "20%"
+        },
+        '& .react-calendar__tile--active': {
+            backgroundColor: "#DDDDDD",
+            color: "#000",
+            borderRadius: "20%"
+        }
     },
     smallDot: {
         height: "8px",
