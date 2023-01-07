@@ -77,7 +77,8 @@ https://user-images.githubusercontent.com/53266682/210122562-47a09a2a-ebf6-4c07-
 
 ```
 $ cd comfort-fe
-$ yarn start
+$ yarn
+$ yarn start # http://localhost:3000
 ```
 
 ## TODO
